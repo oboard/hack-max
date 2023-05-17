@@ -1,7 +1,6 @@
 <template>
   <div>
     <input v-model="inputStr" @keyup="() => getFirstLetter()" placeholder="请输入字符串">
-    <button @click="() => getFirstLetter()">获取首字母</button>
     <p>{{ firstLetter }}</p>
   </div>
 </template>
