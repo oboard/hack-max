@@ -2,6 +2,7 @@
   <div>
     <input v-model="inputStr" @keyup="() => getFirstLetter()" placeholder="请输入字符串">
     <p>{{ firstLetter }}</p>
+    <p style="color:red;font-size:128px">{{ answer }}</p>
   </div>
 </template>
 
@@ -13,7 +14,7 @@ export default {
     return {
       inputStr: '',
       firstLetter: '',
-
+      answer: '',
     }
   },
   methods: {
@@ -22,8 +23,10 @@ export default {
       for (let index = 0; index < dataset.length; index++) {
         const item = dataset[index];
         console.log(item);
-        if (item['pinyin'].indexOf(this.inputStr.trim()) > 0) {
+        if (item['pinyin'].indexOf(this.inputStr.trim()) >= 0) {
           this.firstLetter = item.topic + '\n' + item.answer;
+          this.answer = item.answer;
+          return;
         }
       }
     },
