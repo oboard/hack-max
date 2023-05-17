@@ -1976,7 +1976,7 @@ let count = 0;
 
 import fileSave from "file-save";
 
-let file = fileSave("./data.js").write(`var a = 1;`, "utf8");
+let file = fileSave("./data.js").write(`var a = [`, "utf8");
 
 for (let index = 0; index < list.length; index++) {
   const i = list[index];
@@ -1985,7 +1985,7 @@ for (let index = 0; index < list.length; index++) {
   count++;
   // if (count > 266) continue;
   var items = i.split(/答案：/g);
-  let str = pinyin(i.trim().slice(0, i.length > 30 ? 20 : i.length), {
+  let str = pinyin(items[0].split('A')[0].trim().slice(0, i.length > 30 ? 20 : i.length), {
     style: "first_letter",
     compact: true,
     heteronym: true,
@@ -2005,6 +2005,6 @@ for (let index = 0; index < list.length; index++) {
     }) + ","
   );
 }
-file.end("\n").finish(() => {
+file.end("]\n").finish(() => {
   console.log("写入完成");
 });
