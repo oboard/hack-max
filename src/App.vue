@@ -1,6 +1,8 @@
 <template>
   <div>
-    <input v-model="inputStr" @keyup="() => getFirstLetter()" placeholder="请输入字符串">
+    <p>按回车键清空</p>
+    <input v-model="inputStr" @keyup="() => getFirstLetter()" @keyup.enter="()=>inputStr=''" placeholder="请输入一串首字母">
+  
     <p>{{ firstLetter }}</p>
     <p style="color:red;font-size:128px">{{ answer }}</p>
   </div>
@@ -18,7 +20,6 @@ export default {
     }
   },
   methods: {
-
     getFirstLetter() {
       for (let index = 0; index < dataset.length; index++) {
         const item = dataset[index];
