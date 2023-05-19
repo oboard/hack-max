@@ -2102,17 +2102,21 @@ for (let index = 0; index < list.length; index++) {
     firstLetter += "/";
   }
   let ans = items[0].split(/A|B|C|D|E|F|G|H/g);
-  console.log(items[1])
+  console.log(items[1]);
   let composeAnswer = "";
   if (items.length > 1) {
-    for (let index = 1; index < ans.length; index++) {
-      const e = ans[index];
-      const pre = ["A", "B", "C", "D", "E", "F", "G"][index-1];
-      const reals = items[1].replace(/\n/g, "").trim().split('');
-      for (let realIndex = 0; realIndex < reals.length; realIndex++) {
-        const real = reals[realIndex];
-        if (pre == real) {
-          composeAnswer += pre + e;
+    const reals = items[1].replace(/\n/g, "").trim().split("");
+    if (reals.length == ans.length-1 && reals.length!=1) {
+      composeAnswer = "全选";
+    } else {
+      for (let index = 1; index < ans.length; index++) {
+        const e = ans[index];
+        const pre = ["A", "B", "C", "D", "E", "F", "G"][index - 1];
+        for (let realIndex = 0; realIndex < reals.length; realIndex++) {
+          const real = reals[realIndex];
+          if (pre == real) {
+            composeAnswer += pre + e;
+          }
         }
       }
     }
