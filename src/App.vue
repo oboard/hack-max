@@ -1,7 +1,6 @@
 <template>
   <div class="flex flex-col gap-2 items-center justify-start">
-    <p>按回车键清空
-      111{{ selectedDataset }}111</p>
+    <p v-if="inputStr">按回车键清空</p>
 
     <div class="join w-full">
       <select class="select select-bordered join-item" @change="(e) => this.dataset = this.datasetList[e.target.value]">
@@ -27,6 +26,7 @@ import { pinyin } from "pinyin";
 
 import { xinli } from './datasets/xinli.js'
 import { max } from './datasets/max.js'
+import { junshi } from './datasets/junshi.js'
 
 export default {
   data() {
