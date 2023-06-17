@@ -39,8 +39,8 @@ export default {
       ],
       radioData: [
         { value: '全部' },
-        { value: '单选' },
-        { value: '多选' }
+        // { value: '单选' },
+        // { value: '多选' }
       ],
       radioVal: '全部',// 用于设置默认选中项
       dataset: max,
