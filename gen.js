@@ -3674,7 +3674,7 @@ let file = fileSave("./data.js").write(`export const a = [`, "utf8");
 
 for (let index = 0; index < list.length; index++) {
   const i = list[index];
-  const answerRegex = /答案：|答案:/g;
+  const answerRegex = /答案：|答案\:/g;
   console.log(count);
   count++;
   // if (count > 266) continue;
@@ -3698,7 +3698,7 @@ for (let index = 0; index < list.length; index++) {
     firstLetter += "/";
   }
   let ans = items[0].split(/A|B|C|D|E|F|G|H/g);
-  const preAns = '';
+  const preAns = items[1];
   console.log(items[1]);
   let composeAnswer = "";
   if (items.length > 1) {
