@@ -22,18 +22,26 @@
 </template>
 
 <script>
-import { pinyin } from "pinyin";
+//import { pinyin } from "pinyin";
 
 import { xinli } from './datasets/xinli.js'
 import { max } from './datasets/max.js'
 import { junshi } from './datasets/junshi.js'
+import { jindaishi } from './datasets/jindaishi.js'
+import { xigai } from './datasets/xigai.js'
 
 export default {
   data() {
     return {
       inputStr: '',
       selectedDataset: '马克思',
-      datasetList: { '马克思': max, '心理': xinli, '军事理论': junshi },
+      datasetList: {
+        '马克思': max,
+        '心理': xinli,
+        '军事理论': junshi,
+        '近代史': jindaishi,
+        '习概': xigai
+      },
       results: [
 
       ],
@@ -48,63 +56,63 @@ export default {
     }
   },
   methods: {
-    generate(raw) {
-      let list = raw.split(/\d+(、|\.)/g);
-      let firstLetter = "";
-      let count = 0;
+    // generate(raw) {
+    //   let list = raw.split(/\d+(、|\.)/g);
+    //   let firstLetter = "";
+    //   let count = 0;
 
-      for (let index = 0; index < list.length; index++) {
-        const i = list[index];
+    //   for (let index = 0; index < list.length; index++) {
+    //     const i = list[index];
 
-        console.log(count);
-        count++;
-        // if (count > 266) continue;
-        var items = i.split(/答案：/g);
-        let str = pinyin(
-          items[0]
-            .split("A")[0]
-            .trim()
-            .slice(0, i.length > 30 ? 20 : i.length),
-          {
-            style: "first_letter",
-            compact: true,
-            heteronym: true,
-          }
-        );
-        firstLetter = "";
-        for (let i = 0; i < str.length; i++) {
-          for (let j = 0; j < str[i].length; j++) {
-            firstLetter += str[i][j];
-          }
-          firstLetter += "/";
-        }
-        let ans = items[0].split(/A|B|C|D|E|F|G|H/g);
-        console.log(items[1]);
-        let composeAnswer = "";
-        if (items.length > 1) {
-          const reals = items[1].replace(/\n/g, "").trim().split("");
-          if (reals.length == ans.length - 1 && reals.length != 1) {
-            composeAnswer = "全选";
-          } else {
-            for (let index = 1; index < ans.length; index++) {
-              const e = ans[index];
-              const pre = ["A", "B", "C", "D", "E", "F", "G"][index - 1];
-              for (let realIndex = 0; realIndex < reals.length; realIndex++) {
-                const real = reals[realIndex];
-                if (pre == real) {
-                  composeAnswer += pre + e;
-                }
-              }
-            }
-          }
-          dataset.push({
-            topic: items[0],
-            answer: composeAnswer,
-            pinyin: firstLetter,
-          });
-        }
-      }
-    },
+    //     console.log(count);
+    //     count++;
+    //     // if (count > 266) continue;
+    //     var items = i.split(/答案：/g);
+    //     let str = pinyin(
+    //       items[0]
+    //         .split("A")[0]
+    //         .trim()
+    //         .slice(0, i.length > 30 ? 20 : i.length),
+    //       {
+    //         style: "first_letter",
+    //         compact: true,
+    //         heteronym: true,
+    //       }
+    //     );
+    //     firstLetter = "";
+    //     for (let i = 0; i < str.length; i++) {
+    //       for (let j = 0; j < str[i].length; j++) {
+    //         firstLetter += str[i][j];
+    //       }
+    //       firstLetter += "/";
+    //     }
+    //     let ans = items[0].split(/A|B|C|D|E|F|G|H/g);
+    //     console.log(items[1]);
+    //     let composeAnswer = "";
+    //     if (items.length > 1) {
+    //       const reals = items[1].replace(/\n/g, "").trim().split("");
+    //       if (reals.length == ans.length - 1 && reals.length != 1) {
+    //         composeAnswer = "全选";
+    //       } else {
+    //         for (let index = 1; index < ans.length; index++) {
+    //           const e = ans[index];
+    //           const pre = ["A", "B", "C", "D", "E", "F", "G"][index - 1];
+    //           for (let realIndex = 0; realIndex < reals.length; realIndex++) {
+    //             const real = reals[realIndex];
+    //             if (pre == real) {
+    //               composeAnswer += pre + e;
+    //             }
+    //           }
+    //         }
+    //       }
+    //       dataset.push({
+    //         topic: items[0],
+    //         answer: composeAnswer,
+    //         pinyin: firstLetter,
+    //       });
+    //     }
+    //   }
+    // },
     getRadioVal(index) {
       this.radioIndex = index;
       console.log(this.radioVal);
