@@ -1,4 +1,5 @@
-let text = `1. 党的十八大以来取得的最重要的政治成果是( )。
+let text = `单选题
+1. 党的十八大以来取得的最重要的政治成果是( )。
 A. 习近平新时代中国特色社会主义思想
 B.“两个确立”
 C. 找到跳出历史周期律的第二个答案
@@ -3660,6 +3661,7 @@ D. 同担当
 
 615. 如何跳出治乱兴衰历史周期率，毛泽东同志给出了第一个答案，这就是只有让人民来监督政府，政府才不敢松懈。
 答案：对
+
 `;
 import { pinyin } from "pinyin";
 let list = text.split(/\d+(、|\.)/g);
@@ -3672,7 +3674,7 @@ let file = fileSave("./data.js").write(`export const a = [`, "utf8");
 
 for (let index = 0; index < list.length; index++) {
   const i = list[index];
-  const answerRegex = /答案：/g;
+  const answerRegex = /答案：|答案:/g;
   console.log(count);
   count++;
   // if (count > 266) continue;
@@ -3696,6 +3698,7 @@ for (let index = 0; index < list.length; index++) {
     firstLetter += "/";
   }
   let ans = items[0].split(/A|B|C|D|E|F|G|H/g);
+  const preAns = '';
   console.log(items[1]);
   let composeAnswer = "";
   if (items.length > 1) {
@@ -3706,12 +3709,12 @@ for (let index = 0; index < list.length; index++) {
       file.write(
         JSON.stringify({
           topic: items[0],
-          answer: items[1].replace(/true/g, "正确").replace(/false/g, "错误"),
+          answer: preAns.replace(/true/g, "正确").replace(/false/g, "错误"),
           pinyin: firstLetter,
         }) + ","
       );
     } else {
-      const reals = items[1]
+      const reals = preAns
         .replace(/\n/g, "")
         .trim()
         .replace(/,/g, "")
