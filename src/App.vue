@@ -21,7 +21,7 @@
   </div>
   
 <dialog id="my_modal_4" class="modal">
-  <form method="dialog" class="modal-box w-11/12 max-w-sm flex flex-col  items-center">
+  <form method="dialog" class="modal-box w-11/12 max-w-sm flex flex-col items-center">
     <h3 class="font-bold text-lg">输入验证码</h3>
     <p class="py-4">微信关注“小板子的专场”，回复“搜题”获取验证码</p>
     <img class="w-1/2" src="/xbz.webp" />
@@ -47,7 +47,11 @@ export default {
   mounted() {
     // this.my_modal_4.showModal()
     // this.$refs.modal_button.click();
-    document.getElementById('my_modal_4').showModal();
+    setInterval(()=>{
+      if(this.vkey.trim() !== this.a+this.b){
+        document.getElementById('my_modal_4').showModal();
+      }
+    },100);
   },
   data() {
     return {
