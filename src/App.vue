@@ -24,7 +24,7 @@
   <form method="dialog" class="modal-box w-11/12 max-w-sm flex flex-col  items-center">
     <h3 class="font-bold text-lg">输入验证码</h3>
     <p class="py-4">微信关注“小板子的专场”，回复“搜题”获取验证码</p>
-    <img class="w-1/2" src="xbz.webp" />
+    <img class="w-1/2" src="/xbz.webp" />
     <input type="text" className="input input-bordered w-full" v-model="vkey"
     @keyup.enter="() => inputStr = ''" placeholder="请输入验证码">
     <div class="modal-action">
