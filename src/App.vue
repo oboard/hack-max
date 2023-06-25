@@ -19,6 +19,19 @@
       </div>
     </div>
   </div>
+  
+<dialog id="my_modal_4" class="modal">
+  <form method="dialog" class="modal-box w-11/12 max-w-sm flex flex-col  items-center">
+    <h3 class="font-bold text-lg">输入验证码</h3>
+    <p class="py-4">微信关注“小板子的专场”，回复“搜题”获取验证码</p>
+    <img class="w-1/2" src="xbz.webp" />
+    <input type="text" className="input input-bordered w-full" v-model="vkey"
+    @keyup.enter="() => inputStr = ''" placeholder="请输入验证码">
+    <div class="modal-action">
+      <a class="btn" @click="check">验证</a>
+    </div>
+  </form>
+</dialog>
 </template>
 
 <script>
@@ -31,8 +44,14 @@ import { jindaishi } from './datasets/jindaishi.js'
 import { xigai } from './datasets/xigai.js'
 
 export default {
+  mounted() {
+    // this.my_modal_4.showModal()
+    // this.$refs.modal_button.click();
+    document.getElementById('my_modal_4').showModal();
+  },
   data() {
     return {
+      vkey: '',
       inputStr: '',
       selectedDataset: '马克思',
       datasetList: {
@@ -53,9 +72,18 @@ export default {
       radioVal: '全部',// 用于设置默认选中项
       dataset: max,
       radioIndex: 0,
+      a:'06',
+      b:'07'
     }
   },
   methods: {
+    check() {
+      if(this.vkey.trim() === this.a+this.b) {
+        document.getElementById('my_modal_4').close();
+      } else {
+        this.vkey = '';
+      }
+    },
     // generate(raw) {
     //   let list = raw.split(/\d+(、|\.)/g);
     //   let firstLetter = "";
