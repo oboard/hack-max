@@ -150,15 +150,15 @@ export default {
       let start = 0, end = this.dataset.length;
       this.results = [];
       if (this.inputStr.trim() == '') return;
-      if (this.radioIndex == 1) {
-        end = 238;
-      } else if (this.radioIndex == 2) {
-        start = 238;
-      }
+      // if (this.radioIndex == 1) {
+      //   end = 238;
+      // } else if (this.radioIndex == 2) {
+      //   start = 238;
+      // }
       for (let index = start; index < end; index++) {
         const item = this.dataset[index];
         console.log(item);
-        if (item['pinyin'].indexOf(this.inputStr.trim()) >= 0) {
+        if (item['pinyin'].toLowerCase().indexOf(this.inputStr.trim().toLowerCase()) >= 0) {
           this.results.push(item);
           // return;
         }
